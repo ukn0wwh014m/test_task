@@ -8,12 +8,11 @@ public class ContentController : MonoBehaviour {
 	public GameObject buttonPrefab;
 	public Transform objectPlaceholder;
 	public GameObject scrollContent;
-	int buttonsCount = 0;
 
+	int buttonsCount = 0;
 
 	List<GameObject> models = new List<GameObject>();
 	public List<Sprite> icons = new List<Sprite>();
-
 	public Dictionary<string,GameObject> items;
 
 	void Awake()
@@ -26,6 +25,7 @@ public class ContentController : MonoBehaviour {
 
 		buttonsCount = models.Count;
 
+		//Instantiating 3D models prefabs from Resources/Models folder
 		for (int i = 0; i < buttonsCount; i++) {
 			GameObject tmp = Instantiate (models[i], objectPlaceholder.position, Quaternion.identity) as GameObject;
 			tmp.SetActive (false);
@@ -36,13 +36,15 @@ public class ContentController : MonoBehaviour {
 		
 	void Start () {
 
+		//Adding buttons to scrollable list
 		for (int i = 0; i < buttonsCount; i++) {
-			GameObject test = CreateNewButton (icons [i]);
-			test.transform.localScale = new Vector3 (1, 1, 1);
+			GameObject nwButton = CreateNewButton (icons [i]);
+			nwButton.transform.localScale = new Vector3 (1, 1, 1);
 		}
 
 	}
 		
+	//itemPreview is icon from Resources/Icons folder.
 	GameObject CreateNewButton(Sprite itemPreview)
 	{
 		GameObject newButton = Instantiate (buttonPrefab) as GameObject;
